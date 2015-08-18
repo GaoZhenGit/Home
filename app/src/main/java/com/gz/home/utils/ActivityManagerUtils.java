@@ -1,4 +1,4 @@
-package com.ibm.gz.learn_cloud.Utils;
+package com.gz.home.utils;
 
 import android.app.Activity;
 
