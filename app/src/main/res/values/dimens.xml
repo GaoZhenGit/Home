@@ -16,4 +16,6 @@
     <dimen name="drawer_btn_height">45dp</dimen>
     <dimen name="drawer_img_edge">25dp</dimen>
     <dimen name="drawer_margin_left">25dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="base_action_bar_height">48.0dip</dimen>
 </resources>
