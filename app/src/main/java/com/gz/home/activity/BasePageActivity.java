@@ -39,4 +39,7 @@ public abstract class BasePageActivity extends FragmentActivity {
         Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
     }
 
+    public void ShowToastLong(String string){
+        Toast.makeText(this, string, Toast.LENGTH_LONG).show();
+    }
 }

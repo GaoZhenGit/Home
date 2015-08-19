@@ -31,8 +31,8 @@
 
                 <ImageView
                     android:id="@+id/img_account"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_left"
                     android:src="@drawable/login_icon_account" />
@@ -44,7 +44,8 @@
                     android:layout_toEndOf="@+id/img_account"
                     android:layout_toRightOf="@+id/img_account"
                     android:background="@color/transparent"
-                    android:hint="请输入用户名"
+                    android:hint="请输入手机号"
+                    android:numeric="integer"
                     android:paddingLeft="15dip"
                     android:shadowDx="0.0"
                     android:shadowDy="1.0"
@@ -63,8 +64,8 @@
 
                 <ImageView
                     android:id="@+id/img_pwd"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_left"
                     android:src="@drawable/login_icon_password" />

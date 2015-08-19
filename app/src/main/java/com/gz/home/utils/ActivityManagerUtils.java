@@ -42,4 +42,11 @@ public class ActivityManagerUtils {
 		}
 		activityList.clear();
 	}
+
+	public void exit(){
+		int id = android.os.Process.myPid();
+		if (id != 0) {
+			android.os.Process.killProcess(id);
+		}
+	}
 }

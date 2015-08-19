@@ -9,11 +9,15 @@ import com.androidquery.AQuery;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.gz.home.R;
+import com.gz.home.datamodel.User;
 
+import cn.bmob.v3.Bmob;
+import cn.bmob.v3.BmobUser;
 
 
 public class SplashActivity extends BasePageActivity {
     private AQuery aq;
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +33,12 @@ public class SplashActivity extends BasePageActivity {
         setContentView(R.layout.activity_splash);
         aq=new AQuery(this);
         YoYo.with(Techniques.Pulse).duration(5000).playOn(aq.id(R.id.splash).getView());
-        postRedirectToActivity(LoginActivity.class,3000);
+        if(BmobUser.getCurrentUser(this, User.class)!=null){
+            this.user=BmobUser.getCurrentUser(this,User.class);
+            postRedirectToActivity(MainActivity.class, 3000);
+        } else {
+            postRedirectToActivity(LoginActivity.class, 3000);
+        }
     }
 
     @Override
