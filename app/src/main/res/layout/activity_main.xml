@@ -5,7 +5,7 @@
 
     <Button
         android:id="@+id/logoff"
-        android:text="@string/hello_world"
+        android:text="退出登录"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
