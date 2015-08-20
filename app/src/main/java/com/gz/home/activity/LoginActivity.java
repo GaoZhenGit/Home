@@ -61,7 +61,7 @@ public class LoginActivity extends BasePageActivity {
             ShowToast("请输入六位以上密码");
             return;
         }
-
+        ShowToast("登录中...");
         User user=new User();
         user.setUsername(phone);
         user.setPassword(password);

@@ -9,6 +9,8 @@ public class User extends BmobUser {
     private String name;
     private Integer sex;
     private String avatar;
+    private String address;
+    private Integer age;
     private User father;
     private User mother;
 
@@ -50,5 +52,21 @@ public class User extends BmobUser {
 
     public void setMother(User mother) {
         this.mother = mother;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

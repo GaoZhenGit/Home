@@ -1,6 +1,7 @@
 package com.gz.home.activity;
 
 
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.androidquery.AQuery;
@@ -15,6 +16,9 @@ public class RegisterActivity extends BasePageActivity {
     private EditText phone_et;
     private EditText email_et;
     private EditText password_et;
+    private EditText address_et;
+    private CheckBox cmale;
+    private CheckBox cfemale;
 
     @Override
     protected void initData() {
@@ -35,12 +39,26 @@ public class RegisterActivity extends BasePageActivity {
         phone_et = (EditText) findViewById(R.id.login_phone_et);
         email_et = (EditText) findViewById(R.id.login_email_et);
         password_et = (EditText) findViewById(R.id.login_password_et);
+        address_et = (EditText) findViewById(R.id.login_address_et);
+        cmale = (CheckBox) findViewById(R.id.login_check_male);
+        cfemale = (CheckBox) findViewById(R.id.login_check_female);
     }
 
     @Override
     protected void setListener() {
         aq.id(R.id.title_left_btn).clicked(this, "finish");
         aq.id(R.id.regist_btn).clicked(this, "aq_register");
+        aq.id(R.id.login_check_male).clicked(this,"aq_male");
+        aq.id(R.id.login_check_female).clicked(this,"aq_female");
+    }
+
+    public void aq_male(){
+        cmale.setChecked(true);
+        cfemale.setChecked(false);
+    }
+    public void aq_female(){
+        cmale.setChecked(false);
+        cfemale.setChecked(true);
     }
 
     public void aq_register() {
@@ -48,6 +66,13 @@ public class RegisterActivity extends BasePageActivity {
         String phone = phone_et.getText().toString();
         String email = email_et.getText().toString();
         String password = password_et.getText().toString();
+        String address =address_et.getText().toString();
+        Integer sex;
+        if(cmale.isChecked()){
+            sex=Constant.USER.MALE;
+        } else {
+            sex=Constant.USER.FEMALE;
+        }
         if (phone == null || phone.length() != 11) {
             ShowToast("请正确填写手机号");
             return;
@@ -57,13 +82,16 @@ public class RegisterActivity extends BasePageActivity {
         } else if (password == null || password.length() < 6) {
             ShowToast("请输入六位以上密码");
             return;
+        } else if(address==null||address.length()<10){
+            ShowToast("出生地字数不得少于10个");
         }
 
         User user = new User();
         user.setUsername(phone);
         user.setEmail(email);
         user.setPassword(password);
-        user.setSex(Constant.USER.MALE);
+        user.setAddress(address);
+        user.setSex(sex);
         user.signUp(this, new SaveListener() {
             @Override
             public void onSuccess() {

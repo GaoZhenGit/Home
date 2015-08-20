@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
-                android:layout_marginTop="@dimen/button_height"
+                android:layout_marginTop="@dimen/half_button_height"
                 android:background="@color/defalut">
 
                 <ImageView
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
-                android:layout_marginTop="@dimen/button_height"
+                android:layout_marginTop="@dimen/half_button_height"
                 android:background="@color/defalut">
 
                 <ImageView
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
-                android:layout_marginTop="@dimen/button_height"
+                android:layout_marginTop="@dimen/half_button_height"
                 android:background="@color/defalut">
 
                 <ImageView
@@ -124,13 +124,91 @@
                 android:layout_marginRight="@dimen/margin_right"
                 android:background="@color/color_theme" />
 
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:layout_marginRight="@dimen/margin_right"
+                android:layout_marginTop="@dimen/half_button_height"
+                android:background="@color/defalut">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/addr"
+                    android:id="@+id/imageView4"
+                    android:layout_centerVertical="true"/>
+
+                <EditText
+                    android:id="@+id/login_address_et"
+                    android:layout_width="fill_parent"
+                    android:layout_height="@dimen/button_height"
+                    android:background="@color/defalut"
+                    android:hint="出生地"
+                    android:password="true"
+                    android:layout_marginLeft="2dp"
+                    android:layout_toRightOf="@+id/imageView4"
+                    android:layout_toEndOf="@+id/imageView4" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:layout_marginRight="@dimen/margin_right"
+                android:background="@color/color_theme" />
+
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginLeft="@dimen/margin_left"
+                android:layout_marginRight="@dimen/margin_right"
+                android:layout_marginTop="@dimen/half_button_height"
+                android:background="@color/defalut">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="性别:"
+                    android:textSize="@dimen/text_size_large"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/textView" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="男"
+                    android:textSize="@dimen/text_size_large"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="80dp"/>
+                <CheckBox
+                    android:id="@+id/login_check_male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="100dp"
+                    android:checked="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="女"
+                    android:textSize="@dimen/text_size_large"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="180dp"/>
+                <CheckBox
+                    android:id="@+id/login_check_female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="200dp"/>
+            </RelativeLayout>
+
             <Button
                 android:id="@+id/regist_btn"
                 android:layout_width="fill_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_marginLeft="@dimen/margin_left"
                 android:layout_marginRight="@dimen/margin_right"
-                android:layout_marginTop="@dimen/button_height"
+                android:layout_marginTop="@dimen/half_button_height"
                 android:background="@drawable/btn_selector_titlecolor_light"
                 android:gravity="center"
                 android:text="立即注册"

@@ -10,6 +10,7 @@
     <dimen name="margin_left">10dp</dimen>
     <dimen name="margin_right">10dp</dimen>
     <dimen name="button_height">34dp</dimen>
+    <dimen name="half_button_height">17dp</dimen>
     <dimen name="icon_edge">60dp</dimen>
     <dimen name="shadow_width">120dp</dimen>
     <dimen name="drawer_layout_offset">180dp</dimen>

@@ -9,6 +9,6 @@ public interface Constant {
         public static final Integer FEMALE=0;
     }
     class ID{
-        public static final String BMOBID="49ec3266f00c85c4c346aaa1c68224d1";
+        public static final String BMOBID="a8a2c2f172412c4400bbaee31f54851a";
     }
 }
