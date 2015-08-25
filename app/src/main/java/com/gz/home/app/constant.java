@@ -5,8 +5,9 @@ package com.gz.home.app;
  */
 public interface Constant {
     class USER{
-        public static final Integer MALE=1;
-        public static final Integer FEMALE=0;
+        public static final String DATA="user_data";
+        public static final int MALE=1;
+        public static final int FEMALE=0;
     }
     class ID{
         public static final String BMOBID="a8a2c2f172412c4400bbaee31f54851a";

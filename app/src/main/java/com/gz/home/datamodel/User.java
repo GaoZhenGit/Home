@@ -7,9 +7,10 @@ import cn.bmob.v3.BmobUser;
  */
 public class User extends BmobUser {
     private String name;
-    private Integer sex;
+    private int sex;
     private String avatar;
     private String address;
+    private String detail;
     private Integer age;
     private User father;
     private User mother;
@@ -22,11 +23,11 @@ public class User extends BmobUser {
         this.name = name;
     }
 
-    public Integer getSex() {
+    public int getSex() {
         return sex;
     }
 
-    public void setSex(Integer sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 
@@ -68,5 +69,13 @@ public class User extends BmobUser {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 }

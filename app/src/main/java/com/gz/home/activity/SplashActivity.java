@@ -9,6 +9,7 @@ import com.androidquery.AQuery;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.gz.home.R;
+import com.gz.home.app.Constant;
 import com.gz.home.datamodel.User;
 
 import cn.bmob.v3.Bmob;
@@ -55,7 +56,8 @@ public class SplashActivity extends BasePageActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this,targetActivity));
+                Intent intent=new Intent(SplashActivity.this, targetActivity);
+                startActivity(intent);
                 finish();
             }
         },postTime);

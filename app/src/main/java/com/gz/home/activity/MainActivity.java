@@ -11,10 +11,15 @@ import android.widget.TextView;
 import com.androidquery.AQuery;
 import com.gz.home.R;
 import com.gz.home.adapter.TabPagerAdapter;
+import com.gz.home.app.Constant;
+import com.gz.home.app.HomeApplication;
 import com.gz.home.customerview.PagerTabWidget;
+import com.gz.home.datamodel.User;
 import com.gz.home.fragment.FirstFragment;
 import com.gz.home.fragment.TabMeFgm;
 import com.gz.home.listener.OnTabSelectedListener;
+import com.gz.home.utils.LogUtil;
+import com.gz.home.utils.NetworkUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +34,9 @@ public class MainActivity extends BasePageActivity {
     private AQuery aq;
 
     private TabMeFgm tabMeFgm;
+    private long exitTime=0;
+
+    private User user;
 
     @Override
     protected void initData() {
@@ -44,6 +52,8 @@ public class MainActivity extends BasePageActivity {
     @Override
     protected void initView() {
         initTab();
+        aq.id(R.id.title_mid_text).text("家族网");
+
     }
 
     @Override
@@ -80,6 +90,17 @@ public class MainActivity extends BasePageActivity {
                 ShowToast(position+"");
             }
         });
+    }
+
+    @Override
+    public void onBackPressed(){
+        if ((System.currentTimeMillis() - exitTime) > 10000) {
+            ShowToast("再按一次退出程序");
+            exitTime = System.currentTimeMillis();
+        } else {
+            finish();
+            ((HomeApplication)getApplication()).exit();
+        }
     }
 
 }
