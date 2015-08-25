@@ -145,7 +145,6 @@
                     android:layout_height="@dimen/button_height"
                     android:background="@color/defalut"
                     android:hint="出生地"
-                    android:password="true"
                     android:layout_marginLeft="2dp"
                     android:layout_toRightOf="@+id/imageView4"
                     android:layout_toEndOf="@+id/imageView4" />

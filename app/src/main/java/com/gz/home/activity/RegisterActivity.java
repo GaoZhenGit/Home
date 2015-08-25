@@ -84,6 +84,7 @@ public class RegisterActivity extends BasePageActivity {
             return;
         } else if(address==null||address.length()<10){
             ShowToast("出生地字数不得少于10个");
+            return;
         }
 
         User user = new User();
