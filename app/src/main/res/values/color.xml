@@ -320,6 +320,7 @@
     <color name="gainsboro">#dcdcdc</color>
     <!--淡灰色 -->
     <color name="light_grey">#b8b8b8</color>
+    <color name="press_grey">#e8e8e8</color>
     <color name="text_red">#eb4f38</color>
     <color name="defalut">#E8E8E7</color>
 </resources>

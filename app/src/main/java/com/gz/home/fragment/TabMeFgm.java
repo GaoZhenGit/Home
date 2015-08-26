@@ -1,5 +1,6 @@
 package com.gz.home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.androidquery.AQuery;
 import com.gz.home.R;
+import com.gz.home.activity.UserModifyActivity;
 import com.gz.home.app.Constant;
 import com.gz.home.datamodel.User;
 import com.gz.home.utils.LogUtil;
@@ -27,11 +29,13 @@ public class TabMeFgm extends Fragment {
         mView=inflater.inflate(R.layout.fragment_tab_me, container, false);
         aq=new AQuery(mView);
         fetchUserData();
+        setListener();
         return mView;
     }
 
+
     private void fetchUserData() {
-        this.user= BmobUser.getCurrentUser(getActivity(),User.class);
+        this.user= BmobUser.getCurrentUser(getActivity(), User.class);
         initView();
         //更新用户类
         if(user!=null){
@@ -65,6 +69,18 @@ public class TabMeFgm extends Fragment {
         } else {
             aq.id(R.id.me_sex).image(R.drawable.female);
         }
+    }
+
+    private void setListener() {
+        aq.id(R.id.btn_user).clicked(this, "aq_user_modify");
+    }
+
+    public void aq_user_modify(){
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(Constant.USER.DATA,user);
+        Intent intent=new Intent(getActivity(), UserModifyActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
 }
