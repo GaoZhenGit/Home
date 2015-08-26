@@ -87,7 +87,17 @@ public class MainActivity extends BasePageActivity {
         mTabWidget.setmOnTabSelectedListener(new OnTabSelectedListener() {
             @Override
             public void onSelected(List<View> tabViews, int position) {
-                ShowToast(position+"");
+                switch(position){
+                    case 0:
+                        aq.id(R.id.tab_me_img).image(R.drawable.me_grey);
+                        break;
+                    case 1:
+                        aq.id(R.id.tab_me_img).image(R.drawable.me_grey);
+                        break;
+                    case 2:
+                        aq.id(R.id.tab_me_img).image(R.drawable.me_blue);
+                        break;
+                }
             }
         });
     }

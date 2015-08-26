@@ -11,7 +11,7 @@ public class User extends BmobUser {
     private String avatar;
     private String address;
     private String detail;
-    private Integer age;
+    private int age;
     private User father;
     private User mother;
 
@@ -63,11 +63,11 @@ public class User extends BmobUser {
         this.address = address;
     }
 
-    public Integer getAge() {
+    public int getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
     }
 

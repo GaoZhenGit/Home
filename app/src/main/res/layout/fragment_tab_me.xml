@@ -40,6 +40,24 @@
             android:layout_alignTop="@+id/me_name"
             android:layout_toRightOf="@+id/me_name"
             android:layout_toEndOf="@+id/me_name" />
+        <TextView
+            android:id="@+id/me_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="个性签名"
+            android:textSize="@dimen/text_size_small"
+            android:textColor="@color/light_grey"
+            android:layout_below="@+id/me_name"
+            android:layout_alignLeft="@+id/me_name"
+            android:layout_alignStart="@+id/me_name" />
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/icon_right_chevron_grey"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="@dimen/margin_right" />
 
     </RelativeLayout>
 

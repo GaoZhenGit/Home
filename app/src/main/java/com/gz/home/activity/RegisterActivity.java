@@ -93,6 +93,9 @@ public class RegisterActivity extends BasePageActivity {
         user.setPassword(password);
         user.setAddress(address);
         user.setSex(sex);
+        user.setName("tempname");
+        user.setDetail("这个用户很懒，什么也没留下");
+        user.setAge(18);
         user.signUp(this, new SaveListener() {
             @Override
             public void onSuccess() {

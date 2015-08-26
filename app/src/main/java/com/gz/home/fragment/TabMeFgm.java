@@ -55,7 +55,8 @@ public class TabMeFgm extends Fragment {
 
     private void initView(){
         LogUtil.i(user.getUsername());
-        aq.id(R.id.me_name).text(user.getUsername());
+        aq.id(R.id.me_name).text(user.getName());
+        aq.id(R.id.me_detail).text(user.getDetail());
         if(user.getAvatar()!=null) {
             aq.id(R.id.me_avatar).image(user.getAvatar());
         }
