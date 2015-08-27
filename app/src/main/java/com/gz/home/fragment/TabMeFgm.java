@@ -14,19 +14,21 @@ import com.gz.home.app.Constant;
 import com.gz.home.datamodel.User;
 import com.gz.home.utils.LogUtil;
 import com.gz.home.utils.NetworkUtil;
+import com.gz.home.utils.UpdataSubject;
 
 import cn.bmob.v3.BmobUser;
 
 /**
  * Created by host on 2015/8/20.
  */
-public class TabMeFgm extends Fragment {
+public class TabMeFgm extends Fragment implements UpdataSubject.UpdataListener{
     private User user;
     private View mView;
     private AQuery aq;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState){
         mView=inflater.inflate(R.layout.fragment_tab_me, container, false);
+        UpdataSubject.getInstance().addListener(this);
         aq=new AQuery(mView);
         fetchUserData();
         setListener();
@@ -58,7 +60,7 @@ public class TabMeFgm extends Fragment {
     }
 
     private void initView(){
-        LogUtil.i(user.getUsername());
+        LogUtil.i("tab me initview");
         aq.id(R.id.me_name).text(user.getName());
         aq.id(R.id.me_detail).text(user.getDetail());
         if(user.getAvatar()!=null) {
@@ -83,4 +85,18 @@ public class TabMeFgm extends Fragment {
         startActivity(intent);
     }
 
+    @Override
+    public void onDestroy(){
+        //移除更新监听器，防止内存泄露
+        UpdataSubject.getInstance().removeListener(this);
+        LogUtil.i("tab me destroy");
+        super.onDestroy();
+    }
+
+    //用于接收更新后的user，更新监听器
+    @Override
+    public void onUserChange(User user) {
+        this.user=user;
+        initView();
+    }
 }

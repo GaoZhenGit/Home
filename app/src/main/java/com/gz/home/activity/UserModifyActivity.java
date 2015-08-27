@@ -19,6 +19,8 @@ import com.gz.home.datamodel.User;
 import com.gz.home.utils.BitmapUtils;
 import com.gz.home.utils.ImageUtils;
 import com.gz.home.utils.LogUtil;
+import com.gz.home.utils.NetworkUtil;
+import com.gz.home.utils.UpdataSubject;
 
 import java.io.File;
 
@@ -63,6 +65,8 @@ public class UserModifyActivity extends BasePageActivity {
     protected void setListener() {
         aq.id(R.id.title_left_btn).clicked(this, "onBackPressed");
         aq.id(R.id.btn_mdf_avater).clicked(this, "pickPhoto");
+        aq.id(R.id.btn_mdf_name).clicked(this, "aq_mdf_name");
+        aq.id(R.id.btn_mdf_detail).clicked(this, "aq_mdf_detail");
     }
 
     //调用系统相册
@@ -111,6 +115,39 @@ public class UserModifyActivity extends BasePageActivity {
                 newAvatar = BitmapUtils.getBitmapFromUri(mContext, imageCaptureUri);
                 upLoadAvater();
                 break;
+            case Constant.CODE.MDF_NAME:
+                aq.id(R.id.mdf_name).text(data.getStringExtra(Constant.KeyValue.USER_MODIFI));
+                user.setName(data.getStringExtra(Constant.KeyValue.USER_MODIFI));
+                user.setMdfName(false);
+                NetworkUtil.updateUser(this, user, new NetworkUtil.UserListenr() {
+                    @Override
+                    public void onSuccess(User user) {
+                        ShowToast("名字修改成功");
+                        UpdataSubject.getInstance().callUpdata(user);
+                    }
+
+                    @Override
+                    public void onFailure(int i, String s) {
+                        ShowToast("名字修改失败");
+                    }
+                });
+                break;
+            case Constant.CODE.MDF_DETAIL:
+                aq.id(R.id.mdf_detail).text(data.getStringExtra(Constant.KeyValue.USER_MODIFI));
+                user.setDetail(data.getStringExtra(Constant.KeyValue.USER_MODIFI));
+                NetworkUtil.updateUser(this, user, new NetworkUtil.UserListenr() {
+                    @Override
+                    public void onSuccess(User user) {
+                        ShowToast("个性签名修改成功");
+                        UpdataSubject.getInstance().callUpdata(user);
+                    }
+
+                    @Override
+                    public void onFailure(int i, String s) {
+                        ShowToast("个性签名修改失败");
+                    }
+                });
+                break;
         }
     }
 
@@ -122,8 +159,7 @@ public class UserModifyActivity extends BasePageActivity {
             final File file = new File(path);
             LogUtil.i("保存裁剪头像后--->path = " + path);
             LogUtil.i("保存裁剪头像后--->file.exists() = " + file.exists());
-            BTPFileResponse response = BmobProFile.getInstance(mContext).upload(file.getPath(), new UploadListener() {
-
+            NetworkUtil.upload(mContext, file.getPath(), new NetworkUtil.FileUploadListener() {
                 @Override
                 public void onError(int i, String s) {
                     ShowToast("头像上传失败"+s);
@@ -135,14 +171,14 @@ public class UserModifyActivity extends BasePageActivity {
                 }
 
                 @Override
-                public void onSuccess(String s, String s1, BmobFile bmobFile) {
-                    user.setAvatar(bmobFile.getUrl());
-
+                public void onSuccess(String s, String s1, String fileUrl) {
+                    user.setAvatar(fileUrl);
                     aq.id(R.id.mdf_avater).image(user.getAvatar());
-                    user.update(UserModifyActivity.this, new UpdateListener() {
+                    NetworkUtil.updateUser(mContext, user, new NetworkUtil.UserListenr() {
                         @Override
-                        public void onSuccess() {
+                        public void onSuccess(User user) {
                             ShowToast("头像上传成功");
+                            UpdataSubject.getInstance().callUpdata(user);
                             if(!newAvatar.isRecycled()){
                                 newAvatar.recycle();
                                 LogUtil.i("--tag--", "avatar recycle");
@@ -169,5 +205,29 @@ public class UserModifyActivity extends BasePageActivity {
             });
         }
     }
+
+    //修改名字页面
+    public void aq_mdf_name(){
+        if (!user.isMdfName()){
+            return;
+        }
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(Constant.USER.DATA, this.user);
+        bundle.putString(Constant.USER.MDF_TYPE,Constant.KeyValue.USER_NAME_MDF);
+        Intent intent=new Intent(UserModifyActivity.this,EditActivity.class);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, Constant.CODE.MDF_NAME);
+    }
+
+    //修改个性签名页面
+    public void aq_mdf_detail(){
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(Constant.USER.DATA, this.user);
+        bundle.putString(Constant.USER.MDF_TYPE,Constant.KeyValue.USER_DETAIL_MDF);
+        Intent intent=new Intent(UserModifyActivity.this,EditActivity.class);
+        intent.putExtras(bundle);
+        startActivityForResult(intent, Constant.CODE.MDF_DETAIL);
+    }
+
 
 }

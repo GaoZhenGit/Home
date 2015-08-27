@@ -10,6 +10,7 @@ import java.io.File;
 public interface Constant {
     class USER{
         public static final String DATA="user_data";
+        public static final String MDF_TYPE="mdf_type";
         public static final int MALE=1;
         public static final int FEMALE=0;
     }
@@ -17,8 +18,11 @@ public interface Constant {
         public static final String BMOBID="a8a2c2f172412c4400bbaee31f54851a";
     }
     class CODE{
+        //修改类型请求码
         public static final int PICK_FROM_FILE=541;
         public static final int ACTION_CROP = 566;
+        public static final int MDF_DETAIL=243;
+        public static final int MDF_NAME=417;
     }
     class Count{
         public static final int UPLOAD_AVATAR_SIZE = 128;
