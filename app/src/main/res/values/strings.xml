@@ -6,4 +6,5 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_user_modify">UserModifyActivity</string>
+    <string name="title_activity_edit">EditActivity</string>
 </resources>
