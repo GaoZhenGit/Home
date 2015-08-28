@@ -15,6 +15,7 @@ import com.gz.home.app.Constant;
 import com.gz.home.app.HomeApplication;
 import com.gz.home.customerview.PagerTabWidget;
 import com.gz.home.datamodel.User;
+import com.gz.home.fragment.FamilyFragment;
 import com.gz.home.fragment.FirstFragment;
 import com.gz.home.fragment.TabMeFgm;
 import com.gz.home.listener.OnTabSelectedListener;
@@ -33,13 +34,16 @@ public class MainActivity extends BasePageActivity {
     private ViewPager mViewPager;
     private AQuery aq;
 
+    private FamilyFragment familyFragment;
     private TabMeFgm tabMeFgm;
+
     private long exitTime=0;
 
     private User user;
 
     @Override
     protected void initData() {
+        familyFragment=new FamilyFragment();
         tabMeFgm=new TabMeFgm();
     }
 
@@ -70,13 +74,13 @@ public class MainActivity extends BasePageActivity {
     private void initTab(){
         mTabWidget=(PagerTabWidget)findViewById(R.id.me_tabwidget);
         mTabWidget.setDividerInvisible();
-        mTabWidget.addTab(LayoutInflater.from(this).inflate(R.layout.tab_me, null));
-        mTabWidget.addTab(LayoutInflater.from(this).inflate(R.layout.tab_me, null));
+        mTabWidget.addTab(LayoutInflater.from(this).inflate(R.layout.tab_discovery, null));
+        mTabWidget.addTab(LayoutInflater.from(this).inflate(R.layout.tab_family, null));
         mTabWidget.addTab(LayoutInflater.from(this).inflate(R.layout.tab_me, null));
 
         List<Fragment> fragmentList=new ArrayList<>();
         fragmentList.add(new FirstFragment());
-        fragmentList.add(new FirstFragment());
+        fragmentList.add(familyFragment);
         fragmentList.add(tabMeFgm);
 
         mPagerAdapter=new TabPagerAdapter(getSupportFragmentManager(),fragmentList);
@@ -90,13 +94,22 @@ public class MainActivity extends BasePageActivity {
             public void onSelected(List<View> tabViews, int position) {
                 switch(position){
                     case 0:
+                        aq.id(R.id.tab_discovery_img).image(R.drawable.discovery_blue);
+
+                        aq.id(R.id.tab_family_img).image(R.drawable.family_grey);
                         aq.id(R.id.tab_me_img).image(R.drawable.me_grey);
                         break;
                     case 1:
+                        aq.id(R.id.tab_family_img).image(R.drawable.family_blue);
+
+                        aq.id(R.id.tab_discovery_img).image(R.drawable.discovery_grey);
                         aq.id(R.id.tab_me_img).image(R.drawable.me_grey);
                         break;
                     case 2:
                         aq.id(R.id.tab_me_img).image(R.drawable.me_blue);
+
+                        aq.id(R.id.tab_discovery_img).image(R.drawable.discovery_grey);
+                        aq.id(R.id.tab_family_img).image(R.drawable.family_grey);
                         break;
                 }
             }

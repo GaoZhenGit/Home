@@ -4,10 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ImageView
-        android:id="@+id/tab_me_img"
+        android:id="@+id/tab_family_img"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/me_grey"
+        android:src="@drawable/family_grey"
         android:layout_centerInParent="true"/>
 
 </RelativeLayout>
