@@ -82,6 +82,7 @@ public class MainActivity extends BasePageActivity {
         mPagerAdapter=new TabPagerAdapter(getSupportFragmentManager(),fragmentList);
         mViewPager=(ViewPager)findViewById(R.id.me_viewpager);
         mViewPager.setAdapter(mPagerAdapter);
+        mViewPager.setOffscreenPageLimit(2);
 
         mTabWidget.setmViewPager(mViewPager);
         mTabWidget.setmOnTabSelectedListener(new OnTabSelectedListener() {

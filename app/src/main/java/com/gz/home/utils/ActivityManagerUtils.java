@@ -28,7 +28,9 @@ public class ActivityManagerUtils {
 	}
 	
 	public void addActivity(Activity ac){
-		activityList.add(ac);
+		if(!activityList.contains(ac)) {
+			activityList.add(ac);
+		}
 	}
 	
 	public void removeAllActivity(){
