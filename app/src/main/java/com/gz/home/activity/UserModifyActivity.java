@@ -16,6 +16,7 @@ import com.bmob.btp.callback.UploadListener;
 import com.gz.home.R;
 import com.gz.home.app.Constant;
 import com.gz.home.datamodel.User;
+import com.gz.home.utils.ActivityManagerUtils;
 import com.gz.home.utils.BitmapUtils;
 import com.gz.home.utils.ImageUtils;
 import com.gz.home.utils.LogUtil;
@@ -24,6 +25,7 @@ import com.gz.home.utils.UpdataSubject;
 
 import java.io.File;
 
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.UpdateListener;
 
@@ -67,6 +69,7 @@ public class UserModifyActivity extends BasePageActivity {
         aq.id(R.id.btn_mdf_avater).clicked(this, "pickPhoto");
         aq.id(R.id.btn_mdf_name).clicked(this, "aq_mdf_name");
         aq.id(R.id.btn_mdf_detail).clicked(this, "aq_mdf_detail");
+        aq.id(R.id.btn_mdf_logoff).clicked(this, "aq_logoff");
     }
 
     //调用系统相册
@@ -229,5 +232,13 @@ public class UserModifyActivity extends BasePageActivity {
         startActivityForResult(intent, Constant.CODE.MDF_DETAIL);
     }
 
+    //退出登录
+    public void aq_logoff(){
+        BmobUser.logOut(this);
+        ActivityManagerUtils.getInstance().removeAllActivity();
+        startActivity(new Intent(UserModifyActivity.this, LoginActivity.class));
+        ShowToast("退出登录成功");
+        finish();
+    }
 
 }
