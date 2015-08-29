@@ -18,7 +18,7 @@
     <com.gz.home.customerview.PagerTabWidget
         android:id="@+id/me_tabwidget"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/title_bar_height"
+        android:layout_height="55dp"
         android:background="@color/white"
         android:layout_alignParentBottom="true"/>
 

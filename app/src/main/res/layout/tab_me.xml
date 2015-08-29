@@ -8,6 +8,17 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/me_grey"
-        android:layout_centerInParent="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"/>
+    <TextView
+        android:id="@+id/tab_me_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="个人信息"
+        android:textSize="@dimen/text_size_small"
+        android:textColor="@color/light_grey"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tab_me_img"
+        android:layout_marginTop="-5dp"/>
 
 </RelativeLayout>

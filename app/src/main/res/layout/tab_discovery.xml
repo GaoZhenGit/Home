@@ -2,12 +2,23 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="55dp">
     <ImageView
         android:id="@+id/tab_discovery_img"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/discovery_blue"
-        android:layout_centerInParent="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="2dp"/>
+    <TextView
+        android:id="@+id/tab_discovery_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="家族圈"
+        android:textSize="@dimen/text_size_small"
+        android:textColor="@color/color_theme"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/tab_discovery_img"
+        android:layout_marginTop="-5dp"/>
 
 </RelativeLayout>

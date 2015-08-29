@@ -5,13 +5,12 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.androidquery.AQuery;
 import com.gz.home.R;
 import com.gz.home.adapter.MemberAdapter;
-import com.gz.home.app.Constant;
 import com.gz.home.datamodel.User;
-import com.gz.home.utils.LogUtil;
 import com.gz.home.utils.NetworkUtil;
 
 import java.util.ArrayList;
@@ -32,9 +31,13 @@ public class FamilyFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_tab_family, container, false);
         aq=new AQuery(mView);
+        initView();
         fetchUserData();
         setListener();
         return mView;
+    }
+
+    private void initView() {
     }
 
     private void fetchUserData() {
@@ -84,4 +87,6 @@ public class FamilyFragment extends ListFragment {
     private void setListener() {
 
     }
+
+
 }
