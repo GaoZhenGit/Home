@@ -11,6 +11,7 @@ import com.gz.home.R;
 import com.gz.home.adapter.MemberAdapter;
 import com.gz.home.app.Constant;
 import com.gz.home.datamodel.User;
+import com.gz.home.utils.LogUtil;
 import com.gz.home.utils.NetworkUtil;
 
 import java.util.ArrayList;
@@ -37,38 +38,47 @@ public class FamilyFragment extends ListFragment {
     }
 
     private void fetchUserData() {
-        user= BmobUser.getCurrentUser(getActivity(),User.class);
-//        NetworkUtil.updateUser(getActivity(), user, new NetworkUtil.UserListenr() {
-//            @Override
-//            public void onSuccess(User user) {
-//                FamilyFragment.this.user=user;
-//
-//            }
-//
-//            @Override
-//            public void onFailure(int i, String s) {
-//
-//            }
-//        });
-        User mother=new User();
-        mother.setObjectId("th1");
-        mother.setAvatar("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2584355946,4148531126&fm=116&gp=0.jpg");
-        mother.setName("老妈");
-        mother.setSex(Constant.USER.FEMALE);
-        mother.setDetail("母亲的爱");
-        user.setMother(mother);
-        User father=new User();
-        father.setObjectId("th2");
-        father.setAvatar("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1511007589,3103936439&fm=111&gp=0.jpg");
-        father.setName("老爸");
-        father.setSex(Constant.USER.MALE);
-        father.setDetail("爸爸去哪儿");
-        user.setFather(father);
         memberList=new ArrayList<>();
-        memberList.add(father);
-        memberList.add(mother);
-        memberAdapter=new MemberAdapter(getActivity(),memberList,user);
-        setListAdapter(memberAdapter);
+        user= BmobUser.getCurrentUser(getActivity(),User.class);
+        NetworkUtil.getUpdateUser(getActivity(), user, new NetworkUtil.UserListener() {
+            @Override
+            public void onSuccess(User user) {
+                FamilyFragment.this.user=user;
+                if(user.getFather()!=null) {
+                    memberList.add(user.getFather());
+                }
+                if(user.getMother()!=null) {
+                    memberList.add(user.getMother());
+                }
+
+                memberAdapter=new MemberAdapter(getActivity(),memberList,user);
+                setListAdapter(memberAdapter);
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+
+            }
+        });
+//        User mother=new User();
+//        mother.setObjectId("th1");
+//        mother.setAvatar("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2584355946,4148531126&fm=116&gp=0.jpg");
+//        mother.setName("老妈");
+//        mother.setSex(Constant.USER.FEMALE);
+//        mother.setDetail("母亲的爱");
+//        user.setMother(mother);
+//        User father=new User();
+//        father.setObjectId("th2");
+//        father.setAvatar("https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1511007589,3103936439&fm=111&gp=0.jpg");
+//        father.setName("老爸");
+//        father.setSex(Constant.USER.MALE);
+//        father.setDetail("爸爸去哪儿");
+//        user.setFather(father);
+//        memberList=new ArrayList<>();
+//        memberList.add(father);
+//        memberList.add(mother);
+//        memberAdapter=new MemberAdapter(getActivity(),memberList,user);
+//        setListAdapter(memberAdapter);
     }
 
     private void setListener() {

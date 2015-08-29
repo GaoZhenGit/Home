@@ -41,7 +41,7 @@ public class TabMeFgm extends Fragment implements UpdataSubject.UpdataListener{
         initView();
         //更新用户类
         if(user!=null){
-            NetworkUtil.getUpdateUser(getActivity(), user, new NetworkUtil.UserListenr() {
+            NetworkUtil.getUpdateUser(getActivity(), user, new NetworkUtil.UserListener() {
                 @Override
                 public void onSuccess(User user) {
                     TabMeFgm.this.user = user;

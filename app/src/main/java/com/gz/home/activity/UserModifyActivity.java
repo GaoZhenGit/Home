@@ -122,7 +122,7 @@ public class UserModifyActivity extends BasePageActivity {
                 aq.id(R.id.mdf_name).text(data.getStringExtra(Constant.KeyValue.USER_MODIFI));
                 user.setName(data.getStringExtra(Constant.KeyValue.USER_MODIFI));
                 user.setMdfName(false);
-                NetworkUtil.updateUser(this, user, new NetworkUtil.UserListenr() {
+                NetworkUtil.updateUser(this, user, new NetworkUtil.UserListener() {
                     @Override
                     public void onSuccess(User user) {
                         ShowToast("名字修改成功");
@@ -138,7 +138,7 @@ public class UserModifyActivity extends BasePageActivity {
             case Constant.CODE.MDF_DETAIL:
                 aq.id(R.id.mdf_detail).text(data.getStringExtra(Constant.KeyValue.USER_MODIFI));
                 user.setDetail(data.getStringExtra(Constant.KeyValue.USER_MODIFI));
-                NetworkUtil.updateUser(this, user, new NetworkUtil.UserListenr() {
+                NetworkUtil.updateUser(this, user, new NetworkUtil.UserListener() {
                     @Override
                     public void onSuccess(User user) {
                         ShowToast("个性签名修改成功");
@@ -177,7 +177,7 @@ public class UserModifyActivity extends BasePageActivity {
                 public void onSuccess(String s, String s1, String fileUrl) {
                     user.setAvatar(fileUrl);
                     aq.id(R.id.mdf_avater).image(user.getAvatar());
-                    NetworkUtil.updateUser(mContext, user, new NetworkUtil.UserListenr() {
+                    NetworkUtil.updateUser(mContext, user, new NetworkUtil.UserListener() {
                         @Override
                         public void onSuccess(User user) {
                             ShowToast("头像上传成功");

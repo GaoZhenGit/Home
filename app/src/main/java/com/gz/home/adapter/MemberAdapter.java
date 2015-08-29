@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.androidquery.AQuery;
 import com.gz.home.R;
 import com.gz.home.customerview.CircleImageView;
 import com.gz.home.datamodel.User;
@@ -54,12 +55,14 @@ public class MemberAdapter extends BaseAdapter {
         }else {
             viewHolder= (ViewHolder) convertView.getTag();
         }
-        viewHolder.Name.setText(userList.get(position).getName());
-        viewHolder.Detail.setText(userList.get(position).getDetail());
+        User currentItem=userList.get(position);
+        new AQuery(viewHolder.Avater).image(currentItem.getAvatar());
+        viewHolder.Name.setText(currentItem.getName());
+        viewHolder.Detail.setText(currentItem.getDetail());
         //设置标志
-        if(me.getFather()!=null&&me.getFather().getObjectId().equals(userList.get(position).getObjectId())){
+        if(me.getFather()!=null&&me.getFather().getObjectId().equals(currentItem.getObjectId())){
             viewHolder.Tag.setText("爸爸");
-        }else if(me.getMother()!=null&&me.getMother().getObjectId().equals(userList.get(position).getObjectId())){
+        }else if(me.getMother()!=null&&me.getMother().getObjectId().equals(currentItem.getObjectId())){
             viewHolder.Tag.setText("妈妈");
         }else {
             viewHolder.Tag.setVisibility(View.GONE);

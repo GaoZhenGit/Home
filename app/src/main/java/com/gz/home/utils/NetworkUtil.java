@@ -9,6 +9,8 @@ import com.gz.home.datamodel.User;
 
 import org.json.JSONObject;
 
+import java.util.List;
+
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.GetListener;
@@ -19,8 +21,9 @@ import cn.bmob.v3.listener.UpdateListener;
  * 网络请求接口类，用于解耦网络连接，可以换成其他网络后台请求方式
  */
 public class NetworkUtil {
-    public static void getUpdateUser(Context context,User oldUser, final UserListenr userListenr){
+    public static void getUpdateUser(Context context,User oldUser, final UserListener userListenr){
         BmobQuery<User> query=new BmobQuery<User>();
+        query.include("father,mother");
         query.getObject(context, oldUser.getObjectId(), new GetListener<User>() {
             @Override
             public void onSuccess(User user) {
@@ -34,7 +37,7 @@ public class NetworkUtil {
         });
     }
 
-    public static void updateUser(Context context,final User user,final  UserListenr userListenr) {
+    public static void updateUser(Context context,final User user,final  UserListener userListenr) {
         user.update(context, new UpdateListener() {
             @Override
             public void onSuccess() {
@@ -65,7 +68,17 @@ public class NetworkUtil {
             }
         });
     }
-    public interface UserListenr{
+
+    public static void getParents(Context context,User me, final UserListListener userListListener){
+        BmobQuery<User> query=new BmobQuery<>();
+    }
+
+    public interface UserListListener{
+        void onSuccess(List<User> list);
+        void onFailure(int i,String s);
+    }
+
+    public interface UserListener{
         void onSuccess(User user);
         void onFailure(int i, String s);
     }
