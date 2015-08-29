@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.gz.home.R;
+import com.gz.home.app.Constant;
 import com.gz.home.customerview.CircleImageView;
 import com.gz.home.datamodel.User;
 
@@ -59,20 +60,37 @@ public class MemberAdapter extends BaseAdapter {
         new AQuery(viewHolder.Avater).image(currentItem.getAvatar());
         viewHolder.Name.setText(currentItem.getName());
         viewHolder.Detail.setText(currentItem.getDetail());
+
+
         //设置标志
         if(me.getFather()!=null&&me.getFather().getObjectId().equals(currentItem.getObjectId())){
             viewHolder.Tag.setText("爸爸");
         }else if(me.getMother()!=null&&me.getMother().getObjectId().equals(currentItem.getObjectId())){
             viewHolder.Tag.setText("妈妈");
-        }else {
+        }else if(me.getSpouse()!=null&&me.getSpouse().getObjectId().equals(currentItem.getObjectId())) {
+            if(me.getSpouse().getSex()== Constant.USER.MALE){
+                viewHolder.Tag.setText("丈夫");
+            }else {
+                viewHolder.Tag.setText("妻子");
+            }
+        }else{
             viewHolder.Tag.setVisibility(View.GONE);
         }
+
+
         return convertView;
     }
+
+    public void setUserList(List<User> list){
+        this.userList=list;
+    }
+
     public final class ViewHolder{
         public CircleImageView Avater;
         public TextView Name;
         public TextView Detail;
         public TextView Tag;
     }
+
+
 }

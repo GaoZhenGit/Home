@@ -2,6 +2,7 @@ package com.gz.home.activity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -142,10 +143,11 @@ public class MainActivity extends BasePageActivity {
         });
     }
 
+    //这个本来不应该在这里的，但是，titlebar是这个整个Activity的，我现在还转移不了
     public void aq_add(){
         //弹出添加按钮
         View addView =getLayoutInflater().inflate(R.layout.pop_add,null);
-        final PopupWindow popupWindow = new PopupWindow(addView, OtherUtils.dip2px(this,150), ViewGroup.LayoutParams.WRAP_CONTENT, true);
+        final PopupWindow popupWindow = new PopupWindow(addView, OtherUtils.dip2px(this,130), ViewGroup.LayoutParams.WRAP_CONTENT, true);
         popupWindow.setFocusable(true);
         popupWindow.setOutsideTouchable(true);
         popupWindow.setBackgroundDrawable(getResources().getDrawable(R.drawable.blank));
@@ -154,12 +156,12 @@ public class MainActivity extends BasePageActivity {
         YoYo.with(Techniques.BounceInDown).duration(400).playOn(addView);
 
         //设置按键监听
-        //手机添加亲友
-        View phoneBtn=addView.findViewById(R.id.btn_phone_add);
-        phoneBtn.setOnClickListener(new View.OnClickListener() {
+        //查找添加亲友
+        View searchBtn=addView.findViewById(R.id.btn_search_add);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowToast("phone");
+                startActivity(new Intent(MainActivity.this, AddFamliyActivity.class));
             }
         });
         //扫二维码添加亲友
@@ -167,7 +169,7 @@ public class MainActivity extends BasePageActivity {
         codeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ShowToast("code");
+
             }
         });
 

@@ -13,6 +13,7 @@ import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.datatype.BmobFile;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.GetListener;
 import cn.bmob.v3.listener.UpdateListener;
 
@@ -68,9 +69,69 @@ public class NetworkUtil {
             }
         });
     }
+    public static void addFather(final Context context,final User me,String fatherPhone, final UserListener userListener){
+        BmobQuery<User> query=new BmobQuery<>();
+        query.addWhereEqualTo("username",fatherPhone);
+        query.findObjects(context, new FindListener<User>() {
+            @Override
+            public void onSuccess(List<User> list) {
+                if (list.size()>0){
+                    User father=list.get(0);
+                    me.setFather(father);
+                    me.update(context, new UpdateListener() {
+                        @Override
+                        public void onSuccess() {
+                            userListener.onSuccess(me);
+                        }
+
+                        @Override
+                        public void onFailure(int i, String s) {
+                            userListener.onFailure(i,s);
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onError(int i, String s) {
+
+            }
+        });
+    }
 
     public static void getParents(Context context,User me, final UserListListener userListListener){
         BmobQuery<User> query=new BmobQuery<>();
+    }
+    public static void searchPhone(Context context,String phone,final UserListListener userListListener){
+        BmobQuery<User> query=new BmobQuery<>();
+        query.addWhereMatches("username",phone);
+        query.findObjects(context, new FindListener<User>() {
+            @Override
+            public void onSuccess(List<User> list) {
+                userListListener.onSuccess(list);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                userListListener.onFailure(i,s);
+            }
+        });
+    }
+
+    public static void searchName(Context context,String phone,final UserListListener userListListener){
+        BmobQuery<User> query=new BmobQuery<>();
+        query.addWhereMatches("name",phone);
+        query.findObjects(context, new FindListener<User>() {
+            @Override
+            public void onSuccess(List<User> list) {
+                userListListener.onSuccess(list);
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                userListListener.onFailure(i,s);
+            }
+        });
     }
 
     public interface UserListListener{

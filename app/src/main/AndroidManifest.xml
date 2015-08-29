@@ -54,6 +54,10 @@
             android:name=".activity.EditActivity"
             android:label="@string/title_activity_edit" >
         </activity>
+        <activity
+            android:name=".activity.AddFamliyActivity"
+            android:label="@string/title_activity_add_famliy" >
+        </activity>
     </application>
 
 </manifest>

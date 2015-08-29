@@ -16,10 +16,10 @@
         android:background="@drawable/pop_add_bg2_shadow"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/btn_phone_add"
+            android:id="@+id/btn_search_add"
             android:layout_width="match_parent"
             android:layout_height="34dp"
-            android:text="手机号添加"
+            android:text="查找添加"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_middle"

@@ -14,6 +14,7 @@ public class User extends BmobUser {
     private int age;
     private User father;
     private User mother;
+    private User spouse;
     private boolean mdfName=true;
 
     public String getName() {
@@ -86,5 +87,13 @@ public class User extends BmobUser {
 
     public void setMdfName(boolean mdfName) {
         this.mdfName = mdfName;
+    }
+
+    public User getSpouse() {
+        return spouse;
+    }
+
+    public void setSpouse(User spouse) {
+        this.spouse = spouse;
     }
 }
