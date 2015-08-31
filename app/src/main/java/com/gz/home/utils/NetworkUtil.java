@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.GetListener;
@@ -24,10 +25,15 @@ import cn.bmob.v3.listener.UpdateListener;
 public class NetworkUtil {
     public static void getUpdateUser(Context context,User oldUser, final UserListener userListenr){
         BmobQuery<User> query=new BmobQuery<User>();
-        query.include("father,mother");
+        query.include("father,mother,spouse");
         query.getObject(context, oldUser.getObjectId(), new GetListener<User>() {
             @Override
             public void onSuccess(User user) {
+                if(user==null){
+                    LogUtil.i("--tag--","user is null");
+                }else{
+                    LogUtil.i("--tag--","user not null");
+                }
                 userListenr.onSuccess(user);
             }
 

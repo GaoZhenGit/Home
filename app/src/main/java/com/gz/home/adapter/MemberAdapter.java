@@ -12,6 +12,7 @@ import com.gz.home.R;
 import com.gz.home.app.Constant;
 import com.gz.home.customerview.CircleImageView;
 import com.gz.home.datamodel.User;
+import com.gz.home.utils.LogUtil;
 
 import java.util.List;
 
@@ -63,11 +64,15 @@ public class MemberAdapter extends BaseAdapter {
 
 
         //设置标志
-        if(me.getFather()!=null&&me.getFather().getObjectId().equals(currentItem.getObjectId())){
+//        LogUtil.i("father:",""+ (me.getFather()==null));
+//        LogUtil.i("father id",me.getFather().getObjectId());
+//        LogUtil.i("currentitem",""+(currentItem==null));
+//        LogUtil.i("currentid",currentItem.getObjectId());
+        if(me.getFather().getObjectId()!=null&&me.getFather().getObjectId().equals(currentItem.getObjectId())){
             viewHolder.Tag.setText("爸爸");
-        }else if(me.getMother()!=null&&me.getMother().getObjectId().equals(currentItem.getObjectId())){
+        }else if(me.getMother().getObjectId()!=null&&me.getMother().getObjectId().equals(currentItem.getObjectId())){
             viewHolder.Tag.setText("妈妈");
-        }else if(me.getSpouse()!=null&&me.getSpouse().getObjectId().equals(currentItem.getObjectId())) {
+        }else if(me.getSpouse().getObjectId()!=null&&me.getSpouse().getObjectId().equals(currentItem.getObjectId())) {
             if(me.getSpouse().getSex()== Constant.USER.MALE){
                 viewHolder.Tag.setText("丈夫");
             }else {
@@ -83,6 +88,9 @@ public class MemberAdapter extends BaseAdapter {
 
     public void setUserList(List<User> list){
         this.userList=list;
+    }
+    public void setMe(User user){
+        this.me=user;
     }
 
     public final class ViewHolder{
