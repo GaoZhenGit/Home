@@ -13,6 +13,9 @@ import com.gz.home.R;
 import com.gz.home.app.Constant;
 import com.gz.home.datamodel.User;
 
+import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.UpdateListener;
+
 public class MemberActivity extends BasePageActivity {
     private User user;
     private AQuery aq;
@@ -56,6 +59,8 @@ public class MemberActivity extends BasePageActivity {
     @Override
     protected void setListener() {
         aq.id(R.id.title_left_btn).clicked(this, "onBackPressed");
+
+
         //设置checkbox单选
         checkFather.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +86,61 @@ public class MemberActivity extends BasePageActivity {
                 checkSpouse.setChecked(true);
             }
         });
+
+        //设置添加按钮
+        aq.id(R.id.btn_mem_add).clicked(this, "aq_mem_add");
+    }
+
+    public void aq_mem_add(){
+        if(checkFather.isChecked()){
+            String objectId= BmobUser.getCurrentUser(this,User.class).getObjectId();
+            User me=new User();
+            me.setFather(this.user);
+            me.update(this, objectId,new UpdateListener() {
+                @Override
+                public void onSuccess() {
+                    ShowToast("设置成功");
+                    onBackPressed();
+                }
+
+                @Override
+                public void onFailure(int i, String s) {
+                    ShowToast("设置失败");
+                }
+            });
+        }else if(checkMother.isChecked()){
+            String objectId= BmobUser.getCurrentUser(this,User.class).getObjectId();
+            User me=new User();
+            me.setMother(this.user);
+            me.update(this, objectId,new UpdateListener() {
+                @Override
+                public void onSuccess() {
+                    ShowToast("设置成功");
+                    onBackPressed();
+                }
+
+                @Override
+                public void onFailure(int i, String s) {
+                    ShowToast("设置失败");
+                }
+            });
+        }else if(checkSpouse.isChecked()){
+            String objectId= BmobUser.getCurrentUser(this,User.class).getObjectId();
+            User me=new User();
+            me.setSpouse(this.user);
+            me.update(this, objectId,new UpdateListener() {
+                @Override
+                public void onSuccess() {
+                    ShowToast("设置成功");
+                    onBackPressed();
+                }
+
+                @Override
+                public void onFailure(int i, String s) {
+                    ShowToast("设置失败");
+                }
+            });
+        }
     }
 
 }

@@ -242,6 +242,7 @@
     </RelativeLayout>
 
     <TextView
+        android:id="@+id/btn_mem_add"
         android:layout_width="match_parent"
         android:layout_height="@dimen/button_height"
         android:background="@drawable/btn_selector_titlecolor_light"
