@@ -20,6 +20,7 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class MemberActivity extends BasePageActivity {
     private User user;
+    private User me;
     private AQuery aq;
     private CheckBox checkFather;
     private CheckBox checkMother;
@@ -94,58 +95,64 @@ public class MemberActivity extends BasePageActivity {
     }
 
     public void aq_mem_add(){
-        if(checkFather.isChecked()){
-            String objectId= BmobUser.getCurrentUser(this,User.class).getObjectId();
-            final User me=new User();
-            me.setFather(this.user);
-            me.update(this, objectId,new UpdateListener() {
-                @Override
-                public void onSuccess() {
-                    ShowToast("设置成功");
-                    UpdataSubject.getInstance().callUpdata(null);
-                    onBackPressed();
-                }
+        User oldme=BmobUser.getCurrentUser(this, User.class);
+        NetworkUtil.getUpdateUser(this, oldme, new NetworkUtil.UserListener() {
+            @Override
+            public void onSuccess(User user) {
+                me=user;
+                if(checkFather.isChecked()){
+                    me.setFather(MemberActivity.this.user);
+                    NetworkUtil.updateUser(MemberActivity.this, me, new NetworkUtil.UserListener() {
+                        @Override
+                        public void onSuccess(User user) {
+                            ShowToast("设置成功");
+                            UpdataSubject.getInstance().callUpdata(null);
+                            onBackPressed();
+                        }
 
-                @Override
-                public void onFailure(int i, String s) {
-                    ShowToast("设置失败");
-                }
-            });
-        }else if(checkMother.isChecked()){
-            String objectId= BmobUser.getCurrentUser(this,User.class).getObjectId();
-            final User me=new User();
-            me.setMother(this.user);
-            me.update(this, objectId,new UpdateListener() {
-                @Override
-                public void onSuccess() {
-                    ShowToast("设置成功");
-                    UpdataSubject.getInstance().callUpdata(null);
-                    onBackPressed();
-                }
+                        @Override
+                        public void onFailure(int i, String s) {
+                            ShowToast("设置失败");
+                        }
+                    });
+                }else if(checkMother.isChecked()){
+                    me.setMother(MemberActivity.this.user);
+                    NetworkUtil.updateUser(MemberActivity.this, me, new NetworkUtil.UserListener() {
+                        @Override
+                        public void onSuccess(User user) {
+                            ShowToast("设置成功");
+                            UpdataSubject.getInstance().callUpdata(null);
+                            onBackPressed();
+                        }
 
-                @Override
-                public void onFailure(int i, String s) {
-                    ShowToast("设置失败");
-                }
-            });
-        }else if(checkSpouse.isChecked()){
-            String objectId= BmobUser.getCurrentUser(this,User.class).getObjectId();
-            final User me=new User();
-            me.setSpouse(this.user);
-            me.update(this, objectId,new UpdateListener() {
-                @Override
-                public void onSuccess() {
-                    ShowToast("设置成功");
-                    UpdataSubject.getInstance().callUpdata(null);
-                    onBackPressed();
-                }
+                        @Override
+                        public void onFailure(int i, String s) {
+                            ShowToast("设置失败");
+                        }
+                    });
+                }else if(checkSpouse.isChecked()){
+                    me.setSpouse(MemberActivity.this.user);
+                    NetworkUtil.updateUser(MemberActivity.this, me, new NetworkUtil.UserListener() {
+                        @Override
+                        public void onSuccess(User user) {
+                            ShowToast("设置成功");
+                            UpdataSubject.getInstance().callUpdata(null);
+                            onBackPressed();
+                        }
 
-                @Override
-                public void onFailure(int i, String s) {
-                    ShowToast("设置失败");
+                        @Override
+                        public void onFailure(int i, String s) {
+                            ShowToast("设置失败");
+                        }
+                    });
                 }
-            });
-        }
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+
+            }
+        });
     }
 
 }
