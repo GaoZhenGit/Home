@@ -8,4 +8,5 @@
     <string name="title_activity_user_modify">UserModifyActivity</string>
     <string name="title_activity_edit">EditActivity</string>
     <string name="title_activity_add_famliy">AddFamliyActivity</string>
+    <string name="title_activity_member">MemberActivity</string>
 </resources>

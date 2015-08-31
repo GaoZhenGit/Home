@@ -55,8 +55,12 @@
             android:label="@string/title_activity_edit" >
         </activity>
         <activity
-            android:name=".activity.AddFamliyActivity"
+            android:name=".activity.SearchFamliyActivity"
             android:label="@string/title_activity_add_famliy" >
+        </activity>
+        <activity
+            android:name=".activity.MemberActivity"
+            android:label="@string/title_activity_member" >
         </activity>
     </application>
 

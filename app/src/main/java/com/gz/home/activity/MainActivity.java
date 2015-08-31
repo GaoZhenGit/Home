@@ -1,24 +1,19 @@
 package com.gz.home.activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import com.androidquery.AQuery;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.gz.home.R;
 import com.gz.home.adapter.TabPagerAdapter;
-import com.gz.home.app.Constant;
 import com.gz.home.app.HomeApplication;
 import com.gz.home.customerview.PagerTabWidget;
 import com.gz.home.datamodel.User;
@@ -26,8 +21,6 @@ import com.gz.home.fragment.FamilyFragment;
 import com.gz.home.fragment.FirstFragment;
 import com.gz.home.fragment.TabMeFgm;
 import com.gz.home.listener.OnTabSelectedListener;
-import com.gz.home.utils.LogUtil;
-import com.gz.home.utils.NetworkUtil;
 import com.gz.home.utils.OtherUtils;
 
 import java.util.ArrayList;
@@ -161,7 +154,8 @@ public class MainActivity extends BasePageActivity {
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, AddFamliyActivity.class));
+                startActivity(new Intent(MainActivity.this, SearchFamliyActivity.class));
+                popupWindow.dismiss();
             }
         });
         //扫二维码添加亲友
