@@ -106,7 +106,7 @@ public class MemberActivity extends BasePageActivity {
                         @Override
                         public void onSuccess(User user) {
                             ShowToast("设置成功");
-                            UpdataSubject.getInstance().callUpdata(null);
+//                            UpdataSubject.getInstance().callUpdata(null);
                             onBackPressed();
                         }
 
@@ -121,7 +121,7 @@ public class MemberActivity extends BasePageActivity {
                         @Override
                         public void onSuccess(User user) {
                             ShowToast("设置成功");
-                            UpdataSubject.getInstance().callUpdata(null);
+//                            UpdataSubject.getInstance().callUpdata(null);
                             onBackPressed();
                         }
 
@@ -136,7 +136,7 @@ public class MemberActivity extends BasePageActivity {
                         @Override
                         public void onSuccess(User user) {
                             ShowToast("设置成功");
-                            UpdataSubject.getInstance().callUpdata(null);
+//                            UpdataSubject.getInstance().callUpdata(null);
                             onBackPressed();
                         }
 

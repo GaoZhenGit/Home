@@ -30,7 +30,7 @@ public class SearchFamliyActivity extends BasePageActivity {
 
     @Override
     protected void initData() {
-        user= BmobUser.getCurrentUser(this,User.class);
+        user= User.readInDb(this);
     }
 
     @Override

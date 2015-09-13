@@ -37,7 +37,7 @@ public class FamilyFragment extends Fragment implements UpdataSubject.UpdataList
     @Override
     public void onCreate(Bundle bundle){
         super.onCreate(bundle);
-        UpdataSubject.getInstance().addListener(this);
+//        UpdataSubject.getInstance().addListener(this);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
@@ -51,19 +51,21 @@ public class FamilyFragment extends Fragment implements UpdataSubject.UpdataList
 
     private void fetchUserData() {
         memberList=new ArrayList<>();
-        user=BmobUser.getCurrentUser(getActivity(),User.class);
-        NetworkUtil.getUpdateUser(getActivity(),user, new NetworkUtil.UserListener() {
-            @Override
-            public void onSuccess(User user) {
-                FamilyFragment.this.user=user;
-                initView(user);
-            }
-
-            @Override
-            public void onFailure(int i, String s) {
-
-            }
-        });
+        this.user=User.readInDb(getActivity());
+        initView(user);
+//        user=BmobUser.getCurrentUser(getActivity(),User.class);
+//        NetworkUtil.getUpdateUser(getActivity(),user, new NetworkUtil.UserListener() {
+//            @Override
+//            public void onSuccess(User user) {
+//                FamilyFragment.this.user=user;
+//                initView(user);
+//            }
+//
+//            @Override
+//            public void onFailure(int i, String s) {
+//
+//            }
+//        });
 //        User mother=new User();
 //        mother.setObjectId("th1");
 //        mother.setAvatar("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2584355946,4148531126&fm=116&gp=0.jpg");
@@ -113,31 +115,33 @@ public class FamilyFragment extends Fragment implements UpdataSubject.UpdataList
     @Override
     public void onResume(){
         super.onResume();
-        if(needReflesh){
-            LogUtil.i("needreflesh",""+needReflesh);
-            NetworkUtil.getUpdateUser(getActivity(), user, new NetworkUtil.UserListener() {
-                @Override
-                public void onSuccess(User user) {
-                    LogUtil.i("refresh","family");
-                    FamilyFragment.this.user=user;
-                    initView(user);
-                    needReflesh=false;
-                }
-
-                @Override
-                public void onFailure(int i, String s) {
-
-                }
-            });
-        }
+        this.user=User.readInDb(getActivity());
+        initView(user);
+//        if(needReflesh){
+//            LogUtil.i("needreflesh",""+needReflesh);
+//            NetworkUtil.getUpdateUser(getActivity(), user, new NetworkUtil.UserListener() {
+//                @Override
+//                public void onSuccess(User user) {
+//                    LogUtil.i("refresh","family");
+//                    FamilyFragment.this.user=user;
+//                    initView(user);
+//                    needReflesh=false;
+//                }
+//
+//                @Override
+//                public void onFailure(int i, String s) {
+//
+//                }
+//            });
+//        }
     }
     @Override
     public void onDestroy(){
-        UpdataSubject.getInstance().removeListener(this);
+//        UpdataSubject.getInstance().removeListener(this);
         super.onDestroy();
     }
     @Override
     public void onUserChange(User user) {
-        needReflesh=true;
+//        needReflesh=true;
     }
 }

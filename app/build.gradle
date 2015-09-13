@@ -25,4 +25,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.5.0'
     compile files('libs/Bmob_Push_V0.6beta_20150408.jar')
     compile files('libs/BmobSDK_V3.4.2_0727.jar')
+    compile files('libs/gson-2.1.jar')
 }

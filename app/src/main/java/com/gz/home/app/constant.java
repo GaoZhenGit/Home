@@ -38,6 +38,7 @@ public interface Constant {
         public static final String COMPLETE_PATH = SDCardRoot + DIR_WITH_SEPARATE;
     }
     class KeyValue{
+        public static final String USER="user";
         public static final String USER_MODIFI= "user_modifi";
         public static final String USER_NAME_MDF="user_name_mdf";
         public static final String USER_DETAIL_MDF="user_detail_mdf";

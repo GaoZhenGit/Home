@@ -8,6 +8,7 @@ import android.widget.EditText;
 import com.androidquery.AQuery;
 import com.gz.home.R;
 import com.gz.home.datamodel.User;
+import com.gz.home.utils.NetworkUtil;
 
 import cn.bmob.v3.listener.SaveListener;
 
@@ -62,15 +63,29 @@ public class LoginActivity extends BasePageActivity {
             return;
         }
         ShowToast("登录中...");
-        User user=new User();
+        //这个final user仅供密码验证，不能作为用户资料！！！！
+        final User user=new User();
         user.setUsername(phone);
         user.setPassword(password);
         user.login(this, new SaveListener() {
             @Override
             public void onSuccess() {
-                ShowToast("登录成功");
-                finish();
-                startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                //密码验证后，后台获取用户资料
+                NetworkUtil.getUpdateUser(LoginActivity.this, user, new NetworkUtil.UserListener() {
+                    @Override
+                    public void onSuccess(User user) {
+                        ShowToast("登录成功");
+                        user.sameId();
+                        user.saveInDb(LoginActivity.this);
+                        finish();
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    }
+
+                    @Override
+                    public void onFailure(int i, String s) {
+
+                    }
+                });
             }
 
             @Override

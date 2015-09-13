@@ -1,11 +1,23 @@
 package com.gz.home.datamodel;
 
+import android.content.Context;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.gz.home.app.Constant;
+import com.gz.home.utils.SpUtils;
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.db.sqlite.Selector;
+import com.lidroid.xutils.exception.DbException;
+
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.UpdateListener;
 
 /**
  * Created by host on 2015/8/19.
  */
 public class User extends BmobUser {
+    private String id;
     private String name;
     private int sex;
     private String avatar;
@@ -23,6 +35,11 @@ public class User extends BmobUser {
 
     public void setName(String name) {
         this.name = name;
+    }
+    @Override
+    public void setUsername(String userName){
+        super.setUsername(userName);
+        this.id=userName;
     }
 
     public int getSex() {
@@ -95,5 +112,65 @@ public class User extends BmobUser {
 
     public void setSpouse(User spouse) {
         this.spouse = spouse;
+    }
+
+    @Override
+    public void update(final Context context, final String objectId, final UpdateListener listener){
+        super.update(context, objectId, listener);
+        saveInDb(context);
+    }
+    @Override
+    public void update(Context context, UpdateListener listener) {
+        super.update(context,listener);
+        saveInDb(context);
+    }
+    @Override
+    public void update(Context context){
+        super.update(context);
+        saveInDb(context);
+    }
+    public void saveInDb(Context context){
+//        if(this.id==null||this.id.length()!=11)
+//            return;
+//        DbUtils db=DbUtils.create(context);
+//        try {
+//            db.saveBindingId(this);
+//        } catch (DbException e) {
+//            e.printStackTrace();
+//            try {
+//                db.update(this);
+//            } catch (DbException e1) {
+//                e1.printStackTrace();
+//            }
+//        }
+        Gson gson =new GsonBuilder().disableHtmlEscaping().create();
+        String userjson=gson.toJson(this);
+        SpUtils sp=new SpUtils(context);
+        sp.setValue(Constant.KeyValue.USER,userjson);
+    }
+    public static User readInDb(Context context){
+//        DbUtils db=DbUtils.create(context);
+//        try {
+//            return db.findFirst(Selector.from(User.class));
+//        } catch (DbException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+        Gson gson =new GsonBuilder().disableHtmlEscaping().create();
+        SpUtils sp=new SpUtils(context);
+        return gson.fromJson(sp.getValue(Constant.KeyValue.USER,""),User.class);
+    }
+    public static void clearFromDb(Context context){
+//        DbUtils db=DbUtils.create(context);
+//        try {
+//            db.deleteAll(User.class);
+//        } catch (DbException e) {
+//            e.printStackTrace();
+//        }
+        SpUtils sp=new SpUtils(context);
+        sp.setValue(Constant.KeyValue.USER,"");
+    }
+    public void sameId(){
+        this.id=this.getUsername();
     }
 }

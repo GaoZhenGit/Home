@@ -121,12 +121,12 @@ public class UserModifyActivity extends BasePageActivity {
             case Constant.CODE.MDF_NAME:
                 aq.id(R.id.mdf_name).text(data.getStringExtra(Constant.KeyValue.USER_MODIFI));
                 user.setName(data.getStringExtra(Constant.KeyValue.USER_MODIFI));
-                user.setMdfName(false);
+                user.setMdfName(true);
                 NetworkUtil.updateUser(this, user, new NetworkUtil.UserListener() {
                     @Override
                     public void onSuccess(User user) {
                         ShowToast("名字修改成功");
-                        UpdataSubject.getInstance().callUpdata(user);
+//                        UpdataSubject.getInstance().callUpdata(user);
                     }
 
                     @Override
@@ -142,12 +142,12 @@ public class UserModifyActivity extends BasePageActivity {
                     @Override
                     public void onSuccess(User user) {
                         ShowToast("个性签名修改成功");
-                        UpdataSubject.getInstance().callUpdata(user);
+//                        UpdataSubject.getInstance().callUpdata(user);
                     }
 
                     @Override
                     public void onFailure(int i, String s) {
-                        ShowToast("个性签名修改失败");
+                        ShowToast("个性签名修改失败"+s);
                     }
                 });
                 break;
@@ -181,7 +181,7 @@ public class UserModifyActivity extends BasePageActivity {
                         @Override
                         public void onSuccess(User user) {
                             ShowToast("头像上传成功");
-                            UpdataSubject.getInstance().callUpdata(user);
+//                            UpdataSubject.getInstance().callUpdata(user);
                             if(!newAvatar.isRecycled()){
                                 newAvatar.recycle();
                                 LogUtil.i("--tag--", "avatar recycle");
@@ -211,7 +211,7 @@ public class UserModifyActivity extends BasePageActivity {
 
     //修改名字页面
     public void aq_mdf_name(){
-        if (!user.isMdfName()){
+        if (user.isMdfName()){
             return;
         }
         Bundle bundle=new Bundle();
@@ -235,6 +235,7 @@ public class UserModifyActivity extends BasePageActivity {
     //退出登录
     public void aq_logoff(){
         BmobUser.logOut(this);
+        User.clearFromDb(this);
         ActivityManagerUtils.getInstance().removeAllActivity();
         startActivity(new Intent(UserModifyActivity.this, LoginActivity.class));
         ShowToast("退出登录成功");

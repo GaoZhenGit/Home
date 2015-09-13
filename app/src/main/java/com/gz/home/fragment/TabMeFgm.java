@@ -37,26 +37,8 @@ public class TabMeFgm extends Fragment implements UpdataSubject.UpdataListener{
 
 
     private void fetchUserData() {
-        this.user= BmobUser.getCurrentUser(getActivity(), User.class);
-        initView();
-        //更新用户类
-        if(user!=null){
-            NetworkUtil.getUpdateUser(getActivity(),user, new NetworkUtil.UserListener() {
-                @Override
-                public void onSuccess(User user) {
-                    TabMeFgm.this.user = user;
-                    user.update(getActivity());
-                    initView();
-                }
-
-                @Override
-                public void onFailure(int i, String s) {
-                    LogUtil.i(i + " " + s);
-                }
-            });
-        }else {
-            LogUtil.i("user is null");
-        }
+        //从本地数据库读取数据
+        this.user=User.readInDb(getActivity());
     }
 
     private void initView(){
@@ -86,6 +68,12 @@ public class TabMeFgm extends Fragment implements UpdataSubject.UpdataListener{
     }
 
     @Override
+    public void onResume(){
+        super.onResume();
+        user=User.readInDb(getActivity());
+        initView();
+    }
+    @Override
     public void onDestroy(){
         //移除更新监听器，防止内存泄露
         UpdataSubject.getInstance().removeListener(this);
@@ -96,9 +84,9 @@ public class TabMeFgm extends Fragment implements UpdataSubject.UpdataListener{
     //用于接收更新后的user，更新监听器
     @Override
     public void onUserChange(User user) {
-        if(user==null)
-            return;
-        this.user=user;
-        initView();
+//        if(user==null)
+//            return;
+//        this.user=user;
+//        initView();
     }
 }
