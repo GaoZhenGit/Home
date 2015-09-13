@@ -6,9 +6,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.gz.home.app.Constant;
 import com.gz.home.utils.SpUtils;
-import com.lidroid.xutils.DbUtils;
-import com.lidroid.xutils.db.sqlite.Selector;
-import com.lidroid.xutils.exception.DbException;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.UpdateListener;
