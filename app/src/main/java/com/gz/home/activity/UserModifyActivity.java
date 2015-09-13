@@ -238,7 +238,7 @@ public class UserModifyActivity extends BasePageActivity {
         ActivityManagerUtils.getInstance().removeAllActivity();
         startActivity(new Intent(UserModifyActivity.this, LoginActivity.class));
         ShowToast("退出登录成功");
-        finish();
+//        finish();
     }
 
 }

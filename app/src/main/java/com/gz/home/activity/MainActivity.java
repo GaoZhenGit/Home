@@ -68,8 +68,8 @@ public class MainActivity extends BasePageActivity {
 
     public void aq_logoff(){
         BmobUser.logOut(this);
-        finish();
         startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        finish();
     }
 
     private void initTab(){

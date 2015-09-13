@@ -134,6 +134,7 @@ public class FamilyFragment extends Fragment implements UpdataSubject.UpdataList
     @Override
     public void onDestroy(){
         UpdataSubject.getInstance().removeListener(this);
+        super.onDestroy();
     }
     @Override
     public void onUserChange(User user) {
