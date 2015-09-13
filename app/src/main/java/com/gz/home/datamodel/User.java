@@ -24,7 +24,7 @@ public class User extends BmobUser {
     private User father;
     private User mother;
     private User spouse;
-    private boolean mdfName=true;
+    private boolean mdfName=false;
 
     public String getName() {
         return name;

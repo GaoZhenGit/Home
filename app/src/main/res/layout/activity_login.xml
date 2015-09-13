@@ -43,6 +43,7 @@
                     android:layout_height="@dimen/title_bar_height"
                     android:layout_toEndOf="@+id/img_account"
                     android:layout_toRightOf="@+id/img_account"
+                    android:maxLength="11"
                     android:background="@color/transparent"
                     android:hint="请输入手机号"
                     android:numeric="integer"

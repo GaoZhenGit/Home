@@ -68,11 +68,17 @@ public class MemberAdapter extends BaseAdapter {
 //        LogUtil.i("father id",me.getFather().getObjectId());
 //        LogUtil.i("currentitem",""+(currentItem==null));
 //        LogUtil.i("currentid",currentItem.getObjectId());
-        if(me.getFather().getObjectId()!=null&&me.getFather().getObjectId().equals(currentItem.getObjectId())){
+        if(me.getFather()!=null&&
+                me.getFather().getObjectId()!=null&&
+                me.getFather().getObjectId().equals(currentItem.getObjectId())){
             viewHolder.Tag.setText("爸爸");
-        }else if(me.getMother().getObjectId()!=null&&me.getMother().getObjectId().equals(currentItem.getObjectId())){
+        }else if(me.getMother()!=null&&
+                me.getMother().getObjectId()!=null&&
+                me.getMother().getObjectId().equals(currentItem.getObjectId())){
             viewHolder.Tag.setText("妈妈");
-        }else if(me.getSpouse().getObjectId()!=null&&me.getSpouse().getObjectId().equals(currentItem.getObjectId())) {
+        }else if(me.getSpouse()!=null&&
+                me.getSpouse().getObjectId()!=null&&
+                me.getSpouse().getObjectId().equals(currentItem.getObjectId())) {
             if(me.getSpouse().getSex()== Constant.USER.MALE){
                 viewHolder.Tag.setText("丈夫");
             }else {
